@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="Console">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <File name="dao" fileName="logs/dao.log" append="false" createOnDemand="true">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+        <File name="daoError" fileName="logs/daoError-${date:yyyy-MM-dd}.log" append="false" createOnDemand="true">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+        <File name="daoInner" fileName="logs/daoInner.log" append="false" createOnDemand="true">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+
+        <File name="service" fileName="logs/service.log" append="false" createOnDemand="true">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+
+    </Appenders>
+    <Loggers>
+        <Root level="ALL">
+            <AppenderRef ref="Console"/>
+        </Root>
+        <logger name="dao" level="TRACE">
+            <AppenderRef ref="dao"/>
+        </logger>
+        <logger name="dao.subpackage" level="TRACE">
+            <AppenderRef ref="daoInner"/>
+        </logger>
+        <logger name="service" level="TRACE">
+            <AppenderRef ref="service"/>
+        </logger>
+    </Loggers>
+</Configuration>
